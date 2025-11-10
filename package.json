@@ -1,0 +1,40 @@
+{
+  "name": "balancepro",
+  "version": "1.0.0",
+  "description": "Sistema de gestão financeira empresarial",
+  "private": true,
+  "scripts": {
+    "setup": "node setup.js",
+    "install:all": "npm run install:server && npm run install:client",
+    "install:server": "cd server && npm install",
+    "install:client": "cd client && npm install",
+    "dev": "concurrently \"npm run dev:server\" \"npm run dev:client\"",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev",
+    "build": "npm run build:server && npm run build:client",
+    "build:server": "cd server && npm run build",
+    "build:client": "cd client && npm run build",
+    "start": "cd server && npm start",
+    "test": "echo \"Testes não implementados ainda\" && exit 0",
+    "lint": "npm run lint:server && npm run lint:client",
+    "lint:server": "cd server && echo 'Lint do servidor não configurado'",
+    "lint:client": "cd client && npm run lint"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "gestão financeira",
+    "contabilidade",
+    "dre",
+    "balanço patrimonial",
+    "react",
+    "nodejs",
+    "typescript"
+  ],
+  "author": "BalancePro Team",
+  "license": "MIT"
+}
