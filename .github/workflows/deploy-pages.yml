@@ -32,8 +32,8 @@ jobs:
       - name: Build (client)
         working-directory: client
         env:
-          # Base para GitHub Pages no subpath /equilibrium/
-          VITE_BASE: /equilibrium/
+          # Base para GitHub Pages no subpath /equilibriumapp/
+          VITE_BASE: /equilibriumapp/
           # API opcional; configure secrets.VITE_API_URL quando tiver backend público
           VITE_API_URL: ${{ secrets.VITE_API_URL }}
         run: npm run build
