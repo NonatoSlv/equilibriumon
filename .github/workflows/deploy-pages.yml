@@ -42,6 +42,12 @@ jobs:
         run: |
           cp client/dist/index.html client/dist/404.html
 
+      - name: Cleanup previous Pages artifact
+        uses: geekyeggo/delete-artifact@v2
+        with:
+          name: github-pages
+          failOnError: false
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
