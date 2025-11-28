@@ -1,16 +1,28 @@
 services:
   - type: web
     name: equilibrium-api
-    runtime: node
+    env: node
     region: oregon
     plan: free
+    autoDeploy: true
     rootDir: server
-    buildCommand: npm install && npm run build
+    healthCheckPath: /api/health
+    buildCommand: npm ci && npm run build
     startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
-      - key: PORT
-        value: 3002
       - key: HOST
         value: 0.0.0.0
+      - key: NPM_CONFIG_PRODUCTION
+        value: "false"
+      - key: CORS_ORIGINS
+        value: https://mellow-manatee-f3cdd7.netlify.app,https://nonatoslv.github.io
+      - key: DB_FILE
+        value: /var/data/equilibrium.sqlite
+      - key: JWT_SECRET
+        fromSecret: equilibrium-jwt-secret
+    disk:
+      name: data
+      mountPath: /var/data
+      sizeGB: 1
