@@ -25,7 +25,7 @@ export const mockAuth = {
     throw new Error('Email ou senha incorretos')
   },
   
-  register: async (name: string, email: string, password: string) => {
+  register: async (name: string, email: string, _password: string) => {
     await new Promise(resolve => setTimeout(resolve, 500))
     
     const token = btoa(JSON.stringify({ id: 2, email, name, timestamp: Date.now() }))

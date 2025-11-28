@@ -93,7 +93,7 @@ export const demoClient = {
   },
 
   // Relatórios
-  async getDRE(params?: any) {
+  async getDRE(_params?: any) {
     await delay(demoConfig.mockDelay)
     const receitas = mockData.lancamentos
       .filter(l => l.tipo === 'receita')
@@ -115,7 +115,7 @@ export const demoClient = {
     }
   },
 
-  async getBalanco(params?: any) {
+  async getBalanco(_params?: any) {
     await delay(demoConfig.mockDelay)
     return {
       ativos: 10000,
