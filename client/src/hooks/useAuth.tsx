@@ -1,5 +1,5 @@
 import { useState, useEffect, createContext, useContext, type ReactNode } from 'react'
-import { api, ApiError } from '../api/client'
+import { smartClient } from '../api/smartClient'
 import config from '../config/env'
 
 interface User {
@@ -36,8 +36,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
 
     try {
-      const client = api({ timeout: config.timeouts.auth })
-      const userData = await client.get('/api/me')
+      const userData = await smartClient.me()
       const u = userData as any
       setUser(u.user || u)
       setLoading(false)
@@ -49,7 +48,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       localStorage.removeItem(config.cache.userKey)
       setUser(null)
       setLoading(false)
-      setError(null) // Não mostrar erro na verificação inicial
+      setError(null)
       return false
     }
   }
@@ -59,33 +58,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setError(null)
     
     try {
-      const client = api({ timeout: config.timeouts.auth })
-      const response = await client.post('/api/auth/login', { email, password })
+      const response = await smartClient.login(email, password)
       const r = response as any
-      localStorage.setItem(config.cache.tokenKey, r.token)
-      localStorage.setItem(config.cache.userKey, JSON.stringify(r.user))
       setUser(r.user)
-    } catch (err) {
+    } catch (err: any) {
       console.error('Erro no login:', err)
-      
-      if (err instanceof ApiError) {
-        switch (err.code) {
-          case 'invalid_credentials':
-            setError('Email ou senha incorretos')
-            break
-          case 'too_many_requests':
-            setError('Muitas tentativas. Tente novamente em alguns minutos.')
-            break
-          case 'network_error':
-            setError('Erro de conexão. Verifique sua internet.')
-            break
-          default:
-            setError(err.message || 'Erro ao fazer login')
-        }
-      } else {
-        setError('Erro inesperado ao fazer login')
-      }
-      
+      setError(err.message || 'Email ou senha incorretos')
       throw err
     } finally {
       setLoading(false)
@@ -97,36 +75,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setError(null)
     
     try {
-      const client = api({ timeout: config.timeouts.auth })
-      const response = await client.post('/api/auth/register', { name, email, password })
+      const response = await smartClient.register(name, email, password)
       const r = response as any
-      localStorage.setItem(config.cache.tokenKey, r.token)
-      localStorage.setItem(config.cache.userKey, JSON.stringify(r.user))
       setUser(r.user)
-    } catch (err) {
+    } catch (err: any) {
       console.error('Erro no registro:', err)
-      
-      if (err instanceof ApiError) {
-        switch (err.code) {
-          case 'email_in_use':
-            setError('Este email já está em uso')
-            break
-          case 'invalid_payload':
-            setError('Dados inválidos. Verifique os campos.')
-            break
-          case 'too_many_requests':
-            setError('Muitas tentativas. Tente novamente em alguns minutos.')
-            break
-          case 'network_error':
-            setError('Erro de conexão. Verifique sua internet.')
-            break
-          default:
-            setError(err.message || 'Erro ao criar conta')
-        }
-      } else {
-        setError('Erro inesperado ao criar conta')
-      }
-      
+      setError(err.message || 'Erro ao criar conta')
       throw err
     } finally {
       setLoading(false)
