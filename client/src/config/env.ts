@@ -13,7 +13,7 @@ export const config = {
   
   // Configurações da aplicação
   app: {
-    name: 'BalancePro',
+    name: 'Equilibrium',
     version: '1.0.0',
     description: 'Sistema de gestão financeira empresarial'
   },
@@ -32,8 +32,8 @@ export const config = {
   
   // Configurações de cache
   cache: {
-    tokenKey: 'balancepro_token',
-    userKey: 'balancepro_user'
+    tokenKey: 'equilibrium_token',
+    userKey: 'equilibrium_user'
   }
 } as const
 

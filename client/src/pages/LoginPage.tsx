@@ -5,6 +5,7 @@ import Input from '../components/ui/Input'
 import Button from '../components/ui/Button'
 import Card from '../components/ui/Card'
 import { useAuth } from '../hooks/useAuth'
+import Logo from '../components/Logo'
 
 
 export default function LoginPage() {
@@ -73,7 +74,7 @@ export default function LoginPage() {
            
            
            <h1 className="text-4xl font-bold tracking-tight mb-4">
-             BalancePro
+             Equilibrium
            </h1>
           <p className="text-xl text-brand-100 mb-8 leading-relaxed">
             Transforme a gestão financeira da sua empresa com inteligência e simplicidade.
@@ -96,7 +97,7 @@ export default function LoginPage() {
           
           <div className="p-4 rounded-xl bg-white bg-opacity-10 backdrop-blur-sm border border-white border-opacity-20">
             <p className="text-sm text-black">
-               "Desde que começamos a usar o BalancePro, nossa gestão financeira ficou muito mais organizada e eficiente."
+               "Desde que começamos a usar o Equilibrium, nossa gestão financeira ficou muito mais organizada e eficiente."
              </p>
             <p className="text-xs text-black/80 mt-2 font-medium">— Cliente Satisfeito</p>
           </div>
@@ -108,8 +109,8 @@ export default function LoginPage() {
         <div className="w-full max-w-lg">
           {/* Cabeçalho em telas pequenas */}
           <div className="mb-8 text-center lg:hidden">
-             
-             <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">BalancePro</h1>
+             <Logo size={48} className="mx-auto mb-3 text-brand-600 dark:text-brand-400" forceFallback />
+             <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">Equilibrium</h1>
              <p className="text-gray-600 dark:text-gray-400 mt-2">Entre para gerenciar suas finanças</p>
           </div>
 

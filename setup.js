@@ -4,7 +4,7 @@ const { execSync } = require('child_process')
 const fs = require('fs')
 const path = require('path')
 
-console.log('🚀 Configurando BalancePro...\n')
+console.log('🚀 Configurando Equilibrium...\n')
 
 // Verificar se Node.js está na versão correta
 const nodeVersion = process.version
@@ -79,7 +79,7 @@ console.log('\n🎉 Setup concluído com sucesso!')
 console.log('\n📋 Próximos passos:')
 console.log('1. Execute: npm run dev')
 console.log('2. Acesse: http://localhost:5176')
-console.log('3. Login padrão: admin@balancepro.local / admin123')
+console.log('3. Login padrão: admin@equilibrium.local / admin123')
 console.log('\n💡 Comandos úteis:')
 console.log('- npm run dev          # Executar em desenvolvimento')
 console.log('- npm run build        # Build para produção')

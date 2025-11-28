@@ -28,8 +28,8 @@ export default defineConfig({
         ],
       },
       manifest: {
-        name: 'BalancePro',
-        short_name: 'BalancePro',
+        name: 'Equilibrium',
+        short_name: 'Equilibrium',
         // Usar caminho relativo para funcionar em subpaths (GitHub Pages)
         start_url: '.',
         display: 'standalone',

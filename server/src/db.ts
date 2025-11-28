@@ -94,10 +94,10 @@ CREATE TABLE IF NOT EXISTS lancamentos (
   if (userCount.c === 0) {
     const hash = bcrypt.hashSync('admin123', 10)
     db.prepare('INSERT INTO users (email, password_hash, name) VALUES (?, ?, ?)')
-      .run('admin@balancepro.local', hash, 'Administrador')
+      .run('admin@equilibrium.local', hash, 'Administrador')
   }
 
-  const admin = db.prepare('SELECT id FROM users WHERE email = ?').get('admin@balancepro.local') as any
+  const admin = db.prepare('SELECT id FROM users WHERE email = ?').get('admin@equilibrium.local') as any
   const adminId = admin?.id as number | undefined
   console.log('🔍 Admin user found:', admin, 'adminId:', adminId)
 

@@ -9,7 +9,7 @@ function toISO(date: Date) { return date.toISOString().slice(0, 10) }
 
 export default function BalancoPage() {
   const [data, setData] = useState<{ ativos: number; passivos: number; patrimonioLiquido: number; grupos: Array<{ grupo: string; total: number }> } | null>(null)
-  const [month, setMonth] = useState('')
+  const [month, setMonth] = useState(() => new Date().toISOString().slice(0, 7))
   const [useCustomRange, setUseCustomRange] = useState(false)
   const [from, setFrom] = useState('')
   const [to, setTo] = useState('')
@@ -184,12 +184,12 @@ export default function BalancoPage() {
                 <p className="mt-1 font-medium">{fmt(data?.ativos ?? 0)}</p>
               </div>
               <div className="p-3 rounded border border-gray-200 dark:border-gray-800">
-                <p className="subtle">Passivos + PL</p>
-                <p className="mt-1 font-medium">{fmt((data?.passivos ?? 0) + (data?.patrimonioLiquido ?? 0))}</p>
+                <p className="subtle">Passivos</p>
+                <p className="mt-1 font-medium">{fmt(data?.passivos ?? 0)}</p>
               </div>
               <div className={`p-3 rounded border ${balanceStatus.balanced ? 'border-green-200 dark:border-green-800' : 'border-red-200 dark:border-red-800'}`}>
-                <p className="subtle">Diferença</p>
-                <p className={`mt-1 font-medium ${balanceStatus.balanced ? 'text-green-700 dark:text-green-300' : 'text-red-700 dark:text-red-300'}`}>{fmt(balanceStatus.delta)}</p>
+                <p className="subtle">Diferença (Ativos − Passivos)</p>
+                <p className={`mt-1 font-medium ${balanceStatus.balanced ? 'text-green-700 dark:text-green-300' : 'text-red-700 dark:text-red-300'}`}>{fmt((data?.ativos ?? 0) - (data?.passivos ?? 0))}</p>
               </div>
             </div>
           )}

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 export default function LoginTest() {
-  const [email, setEmail] = useState('admin@balancepro.local')
+  const [email, setEmail] = useState('admin@equilibrium.local')
   const [password, setPassword] = useState('admin123')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState('')
@@ -29,7 +29,7 @@ export default function LoginTest() {
       }
 
       setSuccess('Login realizado com sucesso!')
-      localStorage.setItem('balancepro_token', data.token)
+      localStorage.setItem('equilibrium_token', data.token)
       
       // Redirecionar após 1 segundo
       setTimeout(() => {
@@ -47,7 +47,7 @@ export default function LoginTest() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="max-w-md w-full space-y-8 p-8 bg-white rounded-lg shadow-md">
         <div>
-          <h2 className="text-3xl font-bold text-center text-gray-900">BalancePro</h2>
+          <h2 className="text-3xl font-bold text-center text-gray-900">Equilibrium</h2>
           <p className="text-center text-gray-600 mt-2">Teste de Login</p>
         </div>
         

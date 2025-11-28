@@ -3,7 +3,7 @@ version: "3.8"
 services:
   app:
     build: .
-    container_name: balancepro-app
+    container_name: equilibrium-app
     environment:
       - HOST=0.0.0.0
       - PORT=3001
@@ -18,7 +18,7 @@ services:
 
   nginx:
     image: nginx:alpine
-    container_name: balancepro-nginx
+    container_name: equilibrium-nginx
     depends_on:
       - app
     ports:

@@ -209,7 +209,7 @@ export default function RelatoriosPage() {
         d.rect(0, 0, pageWidth, 56, 'F')
         d.setTextColor(255)
         d.setFontSize(15)
-        d.text('DRE', 40, 32)
+        d.text('Demonstração do Resultado (DRE)', 40, 32)
         d.setFontSize(11)
         d.text((empresaNome || `Empresa ${empresaId}`).trim(), pageWidth - 40, 32, { align: 'right' })
         d.setTextColor(60)
@@ -262,6 +262,38 @@ export default function RelatoriosPage() {
             if (row.index === 0) { cell.styles.fillColor = [232, 245, 233]; cell.styles.textColor = [27, 94, 32] }
             else if (row.index === 1) { cell.styles.fillColor = [252, 235, 233]; cell.styles.textColor = [165, 42, 42] }
             else { cell.styles.fillColor = [232, 241, 252]; cell.styles.textColor = [24, 95, 180] }
+          }
+          if (column.index === 1) cell.styles.halign = 'right'
+        },
+      })
+
+      // Indicadores (margem, etc.)
+      const receitasTotal = dre.receitas ?? 0
+      const despesasTotal = dre.despesas ?? 0
+      const resultado = dre.resultado ?? (receitasTotal - despesasTotal)
+      const margemPct = receitasTotal > 0 ? ((resultado / receitasTotal) * 100) : 0
+      const lastYIndicators = (doc as any).lastAutoTable?.finalY || 90
+      autoTable(doc, {
+        startY: lastYIndicators + 20,
+        margin: { right: 40, left: 40 },
+        head: [['Indicadores', 'Valor']],
+        body: [
+          ['Receita total', formatCurrency(receitasTotal)],
+          ['Despesa total', formatCurrency(despesasTotal)],
+          ['Resultado', formatCurrency(resultado)],
+          ['Margem (%)', `${margemPct.toFixed(2)}%`],
+        ],
+        styles: { fontSize: 10, cellPadding: 6, lineWidth: 0.4, lineColor: [220, 220, 220] },
+        headStyles: { fillColor: [33, 150, 243], textColor: 255 },
+        theme: 'grid',
+        didDrawPage: ({ doc }) => drawHeader(doc as unknown as jsPDF),
+        didParseCell: (data) => {
+          const { row, column, cell } = data
+          if (row.section === 'body' && column.index === 0) {
+            if (row.index === 0) { cell.styles.fillColor = [232, 245, 233]; cell.styles.textColor = [27, 94, 32] }
+            else if (row.index === 1) { cell.styles.fillColor = [252, 235, 233]; cell.styles.textColor = [165, 42, 42] }
+            else if (row.index === 2) { cell.styles.fillColor = [232, 241, 252]; cell.styles.textColor = [24, 95, 180] }
+            else { cell.styles.fillColor = [245, 245, 245]; cell.styles.textColor = [60, 60, 60] }
           }
           if (column.index === 1) cell.styles.halign = 'right'
         },
@@ -360,6 +392,45 @@ export default function RelatoriosPage() {
             else { cell.styles.fillColor = [232, 241, 252]; cell.styles.textColor = [24, 95, 180] }
           }
           if (column.index === 1) cell.styles.halign = 'right'
+        },
+      })
+
+      // Seção de Equilíbrio
+      const ativos = balanco.ativos ?? 0
+      const passivos = balanco.passivos ?? 0
+      const patrimonio = balanco.patrimonio ?? (ativos - passivos)
+      const delta = ativos - (passivos + patrimonio)
+      const diferencaAP = ativos - passivos
+      const balanced = Math.abs(delta) < 0.01
+      const lastYEquilibrio = (doc as any).lastAutoTable?.finalY || 90
+      autoTable(doc, {
+        startY: lastYEquilibrio + 20,
+        margin: { right: 40, left: 40 },
+        head: [['Equilíbrio', 'Valor']],
+        body: [
+          ['Verificação', 'Ativos = Passivos + Patrimônio Líquido'],
+          ['Diferença de equilíbrio', formatCurrency(delta)],
+          ['Diferença (Ativos - Passivos)', formatCurrency(diferencaAP)],
+          ['Status do balanço', balanced ? 'Balanceado' : 'Desbalanceado'],
+        ],
+        styles: { fontSize: 10, cellPadding: 6, lineWidth: 0.4, lineColor: [220, 220, 220] },
+        headStyles: { fillColor: [33, 150, 243], textColor: 255 },
+        theme: 'grid',
+        didDrawPage: ({ doc }) => drawHeader(doc as unknown as jsPDF),
+        didParseCell: (data) => {
+          const { row, column, cell } = data
+          if (row.section === 'body') {
+            if (row.index === 1 || row.index === 2) {
+              // números
+              if (column.index === 1) cell.styles.halign = 'right'
+              cell.styles.textColor = balanced ? [27, 94, 32] : [165, 42, 42]
+            }
+            if (row.index === 3 && column.index === 1) {
+              cell.styles.fillColor = balanced ? [232, 245, 233] : [252, 235, 233]
+              cell.styles.textColor = balanced ? [27, 94, 32] : [165, 42, 42]
+              cell.styles.fontStyle = 'bold'
+            }
+          }
         },
       })
 

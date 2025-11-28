@@ -114,10 +114,18 @@ export default function DREPage() {
 
   useEffect(() => {
     const client = api()
-    client.get('/api/lancamentos')
-      .then((res) => {
-        const cats = Array.from(new Set(((res as LancamentosResponse).items || []).map((it) => it.category))).sort()
-        setCategories(cats as string[])
+    Promise.all([
+      client.get('/api/plano-contas/tipo/receita'),
+      client.get('/api/plano-contas/tipo/despesa'),
+    ])
+      .then(([receitasRes, despesasRes]) => {
+        const receitas = Array.isArray(receitasRes) ? receitasRes : []
+        const despesas = Array.isArray(despesasRes) ? despesasRes : []
+        const nomes = [...receitas, ...despesas]
+          .map((c: any) => c?.name || c?.nome || '')
+          .filter((n: string) => n && typeof n === 'string')
+        const cats = Array.from(new Set(nomes)).sort()
+        setCategories(cats)
       })
       .catch(() => setCategories([]))
   }, [])

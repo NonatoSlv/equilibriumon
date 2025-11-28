@@ -81,7 +81,7 @@ export default function PlanoContasChecker({ children }: PlanoContasCheckerProps
             </div>
             <h2 className="h2 mb-2">Configuração Inicial</h2>
             <p className="text-gray-600 dark:text-gray-400">
-              Para começar a usar o BalancePro, precisamos configurar seu plano de contas contábil.
+              Para começar a usar o Equilibrium, precisamos configurar seu plano de contas contábil.
             </p>
           </div>
 

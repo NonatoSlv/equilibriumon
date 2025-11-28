@@ -1,6 +1,7 @@
 import { BarChart3, Shield, Layers, Rocket, Cpu, Users, CheckCircle } from 'lucide-react'
 import Card from '../components/ui/Card'
 import AppLayout from '../layouts/AppLayout'
+// Removido BrandLogo para voltar ao conteúdo original sem imagem
 
 export default function AboutPage() {
   return (
@@ -8,8 +9,7 @@ export default function AboutPage() {
       {/* Hero */}
       <div className="relative overflow-hidden rounded-xl border border-gray-200 dark:border-gray-800 bg-gradient-to-br from-brand-50 to-blue-50 dark:from-gray-900 dark:to-gray-950 p-6">
         <div className="relative z-10">
-          <div className="inline-flex h-10 w-10 items-center justify-center rounded-md bg-brand-100 text-brand-700 font-bold">BP</div>
-          <h2 className="mt-3 h2">Sobre a Balance Pro</h2>
+          <h2 className="h2">Sobre o Equilibrium</h2>
           <p className="subtle mt-1">Gestão financeira moderna, simples e confiável para o seu negócio.</p>
 
           <div className="mt-4 flex flex-wrap gap-2 text-xs">

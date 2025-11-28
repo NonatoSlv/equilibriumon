@@ -1,5 +1,5 @@
 {
-  "name": "balancepro",
+  "name": "equilibrium",
   "version": "1.0.0",
   "description": "Sistema de gestão financeira empresarial",
   "private": true,
@@ -18,7 +18,10 @@
     "test": "echo \"Testes não implementados ainda\" && exit 0",
     "lint": "npm run lint:server && npm run lint:client",
     "lint:server": "cd server && echo 'Lint do servidor não configurado'",
-    "lint:client": "cd client && npm run lint"
+    "lint:client": "cd client && npm run lint",
+    "prepare-deploy": "node prepare-deploy.js",
+    "deploy:vercel": "vercel --prod",
+    "deploy:preview": "vercel"
   },
   "devDependencies": {
     "concurrently": "^8.2.2"
@@ -35,6 +38,6 @@
     "nodejs",
     "typescript"
   ],
-  "author": "BalancePro Team",
+  "author": "Equilibrium Team",
   "license": "MIT"
 }

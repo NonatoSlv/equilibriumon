@@ -1,6 +1,6 @@
 # Deploy com Docker + Nginx
 
-Este guia publica o BalancePro em produção usando Docker Compose e Nginx com TLS.
+Este guia publica o Equilibrium em produção usando Docker Compose e Nginx com TLS.
 
 ## Pré-requisitos
 - Domínio próprio (ex.: `seu-dominio.com`) apontado para o servidor

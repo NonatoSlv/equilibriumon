@@ -1,6 +1,6 @@
-# Guia de Contribuição - BalancePro
+# Guia de Contribuição - Equilibrium
 
-Obrigado por considerar contribuir com o BalancePro! Este documento fornece diretrizes para contribuições.
+Obrigado por considerar contribuir com o Equilibrium! Este documento fornece diretrizes para contribuições.
 
 ## 🚀 Começando
 
@@ -14,7 +14,7 @@ Obrigado por considerar contribuir com o BalancePro! Este documento fornece dire
 1. **Clone o repositório**
 ```bash
 git clone <url-do-repositorio>
-cd balancepro
+cd equilibrium
 ```
 
 2. **Execute o setup automatizado**
@@ -30,7 +30,7 @@ npm run dev
 ## 📁 Estrutura do Projeto
 
 ```
-balancepro/
+equilibrium/
 ├── client/                 # Frontend React + TypeScript
 │   ├── src/
 │   │   ├── api/           # Cliente HTTP e configurações de API
@@ -206,4 +206,4 @@ Para sugerir novas funcionalidades:
 
 ---
 
-Obrigado por contribuir com o BalancePro! 🚀
+Obrigado por contribuir com o Equilibrium! 🚀

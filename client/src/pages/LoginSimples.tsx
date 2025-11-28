@@ -5,7 +5,7 @@ import { useAuth } from '../hooks/useAuth'
 export default function LoginSimples() {
   const navigate = useNavigate()
   const { login, loading, error } = useAuth()
-  const [email, setEmail] = useState('admin@balancepro.local')
+  const [email, setEmail] = useState('admin@equilibrium.local')
   const [password, setPassword] = useState('admin123')
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -22,7 +22,7 @@ export default function LoginSimples() {
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
       <div className="max-w-md w-full space-y-8 p-8">
         <div>
-          <h2 className="text-3xl font-bold text-center">BalancePro</h2>
+          <h2 className="text-3xl font-bold text-center">Equilibrium</h2>
           <p className="text-center text-gray-600 mt-2">Login Simples</p>
         </div>
         

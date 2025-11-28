@@ -39,7 +39,7 @@ export const config = {
   
   // Aplicação
   app: {
-    name: 'BalancePro API',
+    name: 'Equilibrium API',
     version: '1.0.0'
   }
 } as const
