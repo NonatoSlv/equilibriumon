@@ -1,7 +1,7 @@
 // Configuração do Modo Demo
 // Ative isso quando não tiver backend disponível
 
-export const DEMO_MODE = true // Mude para false quando tiver backend real
+export const DEMO_MODE = true // true = modo demo (sem backend necessário)
 
 export const demoConfig = {
   enabled: DEMO_MODE,
