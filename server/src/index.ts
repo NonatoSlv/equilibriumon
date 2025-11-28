@@ -1,5 +1,4 @@
 import express from 'express'
-import path from 'path'
 import cors from 'cors'
 import authRoutes from './routes/auth'
 import lancRoutes from './routes/lancamentos'
@@ -86,18 +85,9 @@ app.use((err: Error, req: express.Request, res: express.Response, next: express.
   })
 })
 
-// 404 handler
-// Servir arquivos estáticos do frontend
-const staticDir = path.resolve(__dirname, '../../client/dist')
-app.use(express.static(staticDir))
-
-// Fallback para SPA (qualquer rota não-API retorna index.html)
-app.get('*', (req, res) => {
-  // Se a rota começa com /api, retornar 404 JSON
-  if (req.path.startsWith('/api')) {
-    return res.status(404).json({ error: 'not_found', message: 'Endpoint não encontrado' })
-  }
-  res.sendFile(path.join(staticDir, 'index.html'))
+// 404 handler para rotas não encontradas
+app.use('*', (req, res) => {
+  res.status(404).json({ error: 'not_found', message: 'Endpoint não encontrado' })
 })
 
 app.listen(config.server.port, config.server.host, () => {
