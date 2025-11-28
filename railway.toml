@@ -1,15 +1,13 @@
 [build]
 builder = "NIXPACKS"
+buildCommand = "cd server && npm install && npm run build"
 
 [deploy]
-startCommand = "npm start"
+startCommand = "cd server && npm start"
 restartPolicyType = "ON_FAILURE"
 restartPolicyMaxRetries = 10
 
-[[services]]
-name = "backend"
-source = "server"
-
-[[services]]
-name = "frontend"
-source = "client"
+[env]
+NODE_ENV = "production"
+PORT = "3002"
+HOST = "0.0.0.0"
